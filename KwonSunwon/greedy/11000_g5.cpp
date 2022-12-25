@@ -67,7 +67,7 @@ int main()
 
         if (timeTable.top() <= temp.startTime) // 교실들 중에 종료 시간이 가장 빠른 시간과 새로운 수업의 시작 시간을 비교
             timeTable.pop();                   // 만약 할당이 가능한 경우 기존 시간을 새로운 수업의 종료 시간으로 변경
-        timeTable.push(temp.endTime);
+        timeTable.push(temp.endTime);          // 불가능한 경우 새로운 교실을 할당
     }
 
     printf("%d", timeTable.size());
