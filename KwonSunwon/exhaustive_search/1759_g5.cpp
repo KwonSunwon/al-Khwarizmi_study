@@ -44,6 +44,16 @@ int main()
 
 void dfs(int idx, string password, int vowel, int consonant)
 {
+    password += alpha[idx];
+
+    if (alpha[idx] == 'a' || alpha[idx] == 'e' || alpha[idx] == 'i' || alpha[idx] == 'o' || alpha[idx] == 'u')
+        vowel++;
+    else
+        consonant++;
+
+    // idx가 C를 넘어가는 경우
+    if (idx >= C)
+        return;
     // 비밀번호가 L 개인 경우
     if (password.length() == L)
     {
@@ -52,16 +62,7 @@ void dfs(int idx, string password, int vowel, int consonant)
             passwords.push(password);
         return;
     }
-    // idx가 C를 넘어가는 경우
-    if (idx >= C)
-        return;
 
-    // 그 외 경우 - 비밀번호에 알파벳을 추가
-    password += alpha[idx];
-
-    for (int i = 1; i < C - idx; i++)
-        if (alpha[idx] == 'a' || alpha[idx] == 'e' || alpha[idx] == 'i' || alpha[idx] == 'o' || alpha[idx] == 'u')
-            dfs(idx + i, password, vowel + 1, consonant);
-        else
-            dfs(idx + i, password, vowel, consonant + 1);
+    for (int i = 1; i < C - idx || idx + i < C; i++)
+        dfs(idx + i, password, vowel, consonant);
 }
