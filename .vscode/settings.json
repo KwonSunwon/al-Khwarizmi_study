@@ -2,6 +2,10 @@
   "files.associations": {
     "queue": "cpp",
     "vector": "cpp",
-    "set": "cpp"
-}
+    "set": "cpp",
+    "xstddef": "cpp"
+},
+"cSpell.words": [
+    "hansu"
+]
 }
