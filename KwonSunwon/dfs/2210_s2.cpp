@@ -10,8 +10,8 @@
 
 using namespace std;
 
-int map[5][5];
-set<string> numbers;
+string map[5][5];
+set<string> numberSet;
 int mx[4] = {-1, 0, 1, 0};
 int my[4] = {0, -1, 0, 1};
 
@@ -25,14 +25,14 @@ int main()
         {
             int temp;
             scanf("%d", &temp);
-            map[y][x] = temp;
+            map[y][x] = to_string(temp);
         }
 
     for (int y = 0; y < 5; y++)
         for (int x = 0; x < 5; x++)
             dfs(x, y, "");
 
-    printf("%d", numbers.size());
+    printf("%d", int(numberSet.size()));
 
     return 0;
 }
@@ -45,7 +45,10 @@ void dfs(int x, int y, string num)
     num += map[y][x];
 
     if (num.size() == 6)
-        numbers.insert(num);
+    {
+        numberSet.insert(num);
+        return;
+    }
 
     for (int i = 0; i < 4; i++)
         dfs(x + mx[i], y + my[i], num);
