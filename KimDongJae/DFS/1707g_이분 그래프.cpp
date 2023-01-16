@@ -10,6 +10,7 @@
 	 이미 방문한 적 있는 노드끼리 연결할 때 문제 발생 ex) (1,2) (4,3) (2,3)
 
 	 결국 시간 초과를 해결하는게 관건..인데 이건 잘 모르겠다.
+	  ==> set을 사용하지 않고 배열을 사용하는게 더 빠를까?
 */
 
 #define _CRT_SECURE_NO_WARNINGS
@@ -17,12 +18,19 @@
 #include <iostream>
 #include <stdio.h>
 #include <vector>
-#include <set>
+#include <memory.h>
+
 
 using namespace std;
 
-set<int> visited;
-set<int> one, two;
+//set<int> visited;
+//set<int> one, two;
+
+bool visited[20000];
+bool one[20000];
+bool two[20000];
+
+
 bool res;
 
 void DFS(int, vector<vector<int>>, int);
@@ -39,7 +47,7 @@ int main() {
 
 		scanf("%d %d", &vertex, &edge);
 
-		for (int i = 0; i < vertex; ++i) {
+		for (int i = 0; i < vertex + 1; ++i) {
 			vector<int> temp;
 			edge_list.emplace_back(temp);
 		}
@@ -48,19 +56,17 @@ int main() {
 			int start, end;
 			scanf("%d %d", &start, &end);
 			
-			start--;
-			end--;
 			edge_list[start].emplace_back(end);
 			edge_list[end].emplace_back(start);
 		}
 
-		DFS(0, edge_list, 1);
+		DFS(1, edge_list, 1);
 
 		result.emplace_back(res);
 
-		visited.clear();
-		one.clear();
-		two.clear();
+		memset(visited, false, sizeof(visited));
+		memset(one, false, sizeof(one));
+		memset(two, false, sizeof(two));
 	}
 
 	for (int i = 0; i < result.size(); ++i) {
@@ -74,23 +80,23 @@ int main() {
 void DFS(int vertex, vector<vector<int>> edges, int group) {
 	if (!res) return;
 
-	if (visited.count(vertex)) {
-		if (group == 1 && two.count(vertex)) {
+	if (visited[vertex]) {
+		if (group == 1 && two[vertex]) {
 			res = false;
 		}
 
-		else if(group == 2 && one.count(vertex)) {
+		else if(group == 2 && one[vertex]) {
 			res = false;
 		}
 		return;
 	}
 
-	visited.insert(vertex);
+	visited[vertex] = true;
 
 	if (group == 1) 
-		one.insert(vertex);
+		one[vertex] = true;
 	else 
-		two.insert(vertex);
+		two[vertex] = true;
 
 	for (int i = 0; i < edges[vertex].size(); ++i) {
 		if (group == 1)
