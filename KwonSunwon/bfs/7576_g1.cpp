@@ -1,7 +1,7 @@
 /*
 Create by KwonSunwon on 2023-01-15.
 Title: 토마토
-Rating: G1
+Rating: G5
 Link: https://www.acmicpc.net/problem/7576
 Language: C++20
 */
