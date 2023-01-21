@@ -3,7 +3,8 @@
     "queue": "cpp",
     "vector": "cpp",
     "set": "cpp",
-    "xstddef": "cpp"
+    "xstddef": "cpp",
+    "utility": "cpp"
 },
 "cSpell.words": [
     "hansu"
