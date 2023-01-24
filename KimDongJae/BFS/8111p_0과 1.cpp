@@ -19,7 +19,7 @@ pair<int, char> arr[20001]; //first에 부모, second에 붙일 숫자를 저장
 void BFS() {
     queue<int> que;
     que.push(1);
- 
+
     arr[1].first = -1;   //부모 노드 번호 표시 (부모가 -1이면 루트 노드인 것)
     arr[1].second = '1'; //N의 배수는 1부터 시작하므로
 
