@@ -1,5 +1,5 @@
 /*
-Create by KwonSunwon on 2023-01-29.
+Create by KwonSunwon on 2023-01-30.
 Title: RGB거리
 Rating: S1
 Link: https://www.acmicpc.net/problem/1149
